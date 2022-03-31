@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          'hat',
+          'Chat',
           style: TextStyle(
             color: Colors.white,
           ),
