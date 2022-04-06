@@ -200,18 +200,15 @@ class _FeedScreenState extends State<FeedScreen> {
                 ), 
                 Row(
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.live_tv),
-                      iconSize: 30.0,
-                      onPressed: () => print('IGTV'),
-                    ),
                     SizedBox(width: 16.0),
                     SizedBox(
                       width: 35.0,
                       child: IconButton(
-                        icon: Icon(Icons.send),
+                        icon: Icon(Icons.exit_to_app),
                         iconSize: 30.0,
-                        onPressed: () => print('Direct Messages'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
                     )
                   ],

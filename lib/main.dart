@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables
 
+import 'package:castservice/FORMULARIO%20CADASTRO/form.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'FEED/feed_screen.dart';
+import 'FORMULARIO CADASTRO/form.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -42,13 +44,32 @@ class _LoginDemoState extends State<LoginDemo> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+              Container(
+               
+            padding: EdgeInsets.only(top: 70),
+            //color: Colors.red,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                
+                Text(
+                  'Castanhal Serv',
+                  style: TextStyle(
+                    fontFamily: 'Billabong',
+                    fontSize: 32.0,
+                  ),
+                ), 
+              
+              ],
+            ),
+          ),
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 // ignore: sized_box_for_whitespace
                 child: Container( 
                   width: 200,
-                  height: 150,
+                 
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),
@@ -57,27 +78,29 @@ class _LoginDemoState extends State<LoginDemo> {
               ),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: TextField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                     border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
                     labelText: 'Email',
                     hintText: 'Entre com Email'
                   ),
                 ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(
-                    left: 15.0, right: 15.0, top: 15, bottom: 0),
+                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                 // padding: EdgeInsets.only(
+                   // left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextField(
                       obscureText: true,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
+                        
                         labelText: "Senha",
                         hintText: 'Entre com senha'),
                     ),
                   ),
-                  // ignore: deprecated_member_use
+                  
                   FlatButton(
                     onPressed:(){
 
@@ -87,13 +110,14 @@ class _LoginDemoState extends State<LoginDemo> {
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                     ),
+                
                     Container(
                       height: 50,
                       width: 250,
                       decoration: BoxDecoration(
                         color: Colors.black12, borderRadius: BorderRadius.circular(20)
                       ),
-                      // ignore: deprecated_member_use
+                      
                       child: FlatButton(
                         onPressed: (){
                          Navigator.push(
@@ -104,11 +128,20 @@ class _LoginDemoState extends State<LoginDemo> {
                         style: TextStyle(color: Colors.black87, fontSize: 25),
                       ),
                       ),
+                    
                     ),
                     const SizedBox(
                       height: 130,
                     ),
-                    const Text('criar conta')
+                      FlatButton(
+                    onPressed:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => FormCad()));
+                    } ,
+                    child: Text(
+                      'Criar conta',
+                      style: TextStyle(color: Colors.black, fontSize: 15),
+                    ),
+                    ),
           ],
         ),
       ),

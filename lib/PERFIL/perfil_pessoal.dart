@@ -137,7 +137,7 @@ class PerfilPessoal extends StatelessWidget{
                     Container(
                       
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
                             children: [
@@ -235,12 +235,12 @@ class PerfilPessoal extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    Padding(padding: EdgeInsets.only(left: 15), child: Text("Everton Figueiredo", style: TextStyle(fontWeight: FontWeight.w900,
+                    Padding(padding: EdgeInsets.only(left: 15), child: Text("Anderson Jardim", style: TextStyle(fontWeight: FontWeight.w900,
                     fontSize: 15 ),),
                     ),
                     Padding(padding: EdgeInsets.only(left: 15), child: Text("Programador", style: TextStyle(fontSize: 15 ),),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 15), child: Text("Ficamos por aqui hoje....", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15 ),
+                    Padding(padding: EdgeInsets.only(left: 15), child: Text("Ama Deus", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15 ),
                     ),
                     ),
                   ],

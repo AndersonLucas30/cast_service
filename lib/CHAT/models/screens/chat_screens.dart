@@ -185,7 +185,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int prevUserId;
+    int? prevUserId;
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
       appBar: AppBar(
@@ -230,20 +230,20 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: <Widget>[
-         // Expanded(
-            //child: ListView.builder(
-           //   reverse: true,
-            //  padding: EdgeInsets.all(20),
-            //  itemCount: messages.length,
-             // itemBuilder: (BuildContext context, int index) {
-               // final Message message = messages[index];
-              //  final bool isMe = message.sender.id == currentUser.id;
-               // final bool isSameUser = prevUserId == message.sender.id;
-              //  prevUserId = message.sender.id;
-               // return _chatBubble(message, isMe, isSameUser);
-            //  },
-           // ),
-        //  ),
+          Expanded(
+           child: ListView.builder(
+              reverse: true,
+              padding: EdgeInsets.all(20),
+              itemCount: messages.length,
+              itemBuilder: (BuildContext context, int index) {
+                final Message message = messages[index];
+                final bool isMe = message.sender.id == currentUser.id;
+               final bool isSameUser = prevUserId == message.sender.id;
+                prevUserId = message.sender.id;
+               return _chatBubble(message, isMe, isSameUser);
+              },
+            ),
+          ),
           _sendMessageArea(),
         ],
       ),
