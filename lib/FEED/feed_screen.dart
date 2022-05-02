@@ -8,7 +8,7 @@ import 'package:castservice/SEARCH/search.dart';
 import 'package:flutter/material.dart';
 
 class FeedScreen extends StatefulWidget {
-  const FeedScreen({Key? key}) : super(key: key);
+  const FeedScreen({Key key}) : super(key: key);
 
   @override
   _FeedScreenState createState() => _FeedScreenState();

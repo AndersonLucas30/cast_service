@@ -7,7 +7,7 @@ import 'package:castservice/MODELO_FEED/post_model.dart';
 class ViewPostScreen extends StatefulWidget {
   final Post post;
 
-  ViewPostScreen({required this.post});
+  ViewPostScreen({ this.post});
 
   @override
   _ViewPostScreenState createState() => _ViewPostScreenState();

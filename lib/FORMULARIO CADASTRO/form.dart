@@ -1,25 +1,58 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use
-
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_import, library_prefixes, unused_local_variable, unnecessary_null_comparison, import_of_legacy_library_into_null_safe, avoid_print
+import 'dart:convert';
+import 'package:castservice/BANCO DE DADOS/DB/mongodb.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
+import 'package:castservice/BANCO DE DADOS/modelos/cadastroDB.dart';
 
 class FormCad extends StatefulWidget {
-  const FormCad({ Key? key }) : super(key: key);
+  const FormCad({ Key key }) : super(key: key);
 
   @override
   _FormCadState createState() => _FormCadState();
 }
 
 class _FormCadState extends State<FormCad> {
+
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController cnpjcpfController = TextEditingController();
+  TextEditingController datanascimentoController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
+
+@override
+  void dispose() {
+    super.dispose();
+    nomeController.dispose();
+    cnpjcpfController.dispose();
+    datanascimentoController.dispose();
+    emailController.dispose();
+    senhaController.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final User user = ModalRoute.of(context).settings.arguments;
+    var widgetText = "Add User";
+    if (user != null) {
+      nomeController.text = user.nome;
+      cnpjcpfController.text = user.cnpjoucpf.toString();
+      datanascimentoController.text = user.nascimento.toString();
+      emailController.text = user.emailoucelular.toString();
+      senhaController.text = user.senha.toString();
+     widgetText = 'Update User';
+    } 
+
     return Scaffold(
       backgroundColor: HexColor('#F2DD68'),
-    
-      body: SingleChildScrollView(
-  
+
+      body: Stack(
+        children: [
+          SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: [
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: Row(
@@ -68,9 +101,10 @@ class _FormCadState extends State<FormCad> {
                 ),
               ),
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: TextField(
+                  controller: nomeController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
                     labelText: 'Nome Fantasia / Nome',
@@ -79,69 +113,64 @@ class _FormCadState extends State<FormCad> {
                   ),
                 ),
                 ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   //padding: EdgeInsets.only(
                     //left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextField(
-                      obscureText: true,
+                      controller: cnpjcpfController,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
                         labelText: "CNPJ ou CPF",
                         hintText: 'CNPJ da empresa ou CPF'),
                     ),
                   ),
-                   const Padding(
+                    Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   //padding: EdgeInsets.only(
                     //left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextField(
-                      obscureText: true,
+                      controller: datanascimentoController ,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
                         labelText: "Data de Nascimento",
                         hintText: 'Entre com a data de nascimento'),
                     ),
                   ),
-                   const Padding(
+                    Padding(
                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                  // padding: EdgeInsets.only(
                    // left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextField(
-                      obscureText: true,
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
                         labelText: "Email ou Celular",
                         hintText: 'Entre com email ou celular'),
                     ),
                   ),
-                   const Padding(
+                    Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                  // padding: EdgeInsets.only(
                    // left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextField(
+                      controller: senhaController,
                       obscureText: true,
                       decoration: InputDecoration(
                          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
-          
                         labelText: "Senha",
                         hintText: 'Entre com a senha'),
                     ),
                   ),
                   
-               /*   FlatButton(
-                    onPressed:(){
-
-                    } ,
-                    child: Text(
-                      'esqueci a senha',
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ), 
-                    ), */
-                const SizedBox(
-                      height: 40,
-                    ),
-                    Container(
+               
+               // const SizedBox(
+                //      height: 40,
+                  //  ),
+               /*     Container(
                       height: 50,
                       width: 250,
                       decoration: BoxDecoration(
@@ -158,14 +187,43 @@ class _FormCadState extends State<FormCad> {
                       ),
                       ), 
                     
-                    ),
+                    ), */
                   //  const SizedBox(
                      // height: 130,
                   //  ),
-                  
-          ],
-        ),
+
+            ],
+          ),
+          ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets. fromLTRB(16.0, 0.0, 16.0, 4.0),
+                child: ElevatedButton(
+                  child: Text(widgetText),
+                  onPressed: () {
+                      insertCadastro();
+                  },
+                   ),
+                ),
+            ),    
+        ],
       ),
     );
   }
+
+
+  insertCadastro() async {
+    final user = User(
+      id: M.ObjectId(),
+      nome: nomeController.text,
+      cnpjoucpf: int.parse(cnpjcpfController.text),
+      nascimento: int.parse(datanascimentoController.text),
+      emailoucelular: emailController.text,
+      senha: senhaController.text,
+    );
+    await MongoDatabase.insert(user);
+    Navigator.pop(context);
+  }
+
 }

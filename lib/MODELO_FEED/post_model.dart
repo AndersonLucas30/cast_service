@@ -5,10 +5,10 @@ class Post {
   String imageUrl;
 
   Post({
-    required this.authorName,
-    required this.authorImageUrl,
-    required this.timeAgo,
-    required this.imageUrl,
+     this.authorName,
+     this.authorImageUrl,
+     this.timeAgo,
+     this.imageUrl,
   });
 }
 

@@ -7,7 +7,7 @@ import 'package:castservice/CHAT/models/user_models.dart';
 class ChatScreen extends StatefulWidget {
   final User user;
 
-  ChatScreen({required this.user});
+  ChatScreen({ this.user});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -185,7 +185,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int? prevUserId;
+    int prevUserId;
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
       appBar: AppBar(
