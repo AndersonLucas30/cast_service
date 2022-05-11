@@ -103,12 +103,12 @@ class _LoginPageState extends State<LoginPage>{
 
   Future<bool> login() async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var url = Uri.parse('https://jsonplaceholder.typicode.com/users');
+    var url = Uri.parse('https://castservice-app.herokuapp.com/users');
     var resposta  = await http.post(
     url,
     body: {
-      'username': _emailController.text,
-      'password': _passwordController.text
+      'emailoucelular': _emailController.text,
+      'senha': _passwordController.text
     },
     );
     if(resposta.statusCode == 200){
