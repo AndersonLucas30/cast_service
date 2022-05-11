@@ -1,5 +1,6 @@
-// ignore_for_file: avoid_renaming_method_parameters, use_key_in_widget_constructors
+// ignore_for_file: avoid_renaming_method_parameters, use_key_in_widget_constructors, unused_import, prefer_const_constructors
 
+import 'package:castservice/Novo%20Login/boasvindas.dart';
 import 'package:flutter/material.dart';
 
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginDemo(),
+      home: BoasVindasPage() //LoginDemo(),
       // ),
     );
   }
