@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:castservice/FEED/feed_screen.dart';
 import 'package:castservice/FORMULARIO%20CADASTRO/form.dart';
+import 'package:castservice/FORMULARIO%20CADASTRO/outroform.dart';
 import 'package:castservice/Novo%20Login/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -79,7 +80,7 @@ class _LoginPageState extends State<LoginPage>{
                     currentFocus.unfocus();
                   }
                   if (deuCerto){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage(),
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>FeedScreen()/* HomePage() */,
                     ),
                     );
                   }else{
@@ -105,7 +106,7 @@ class _LoginPageState extends State<LoginPage>{
 
                 FlatButton(
                     onPressed:(){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => FormCad()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
                     } ,
                     child: Text(
                       'Criar conta',
@@ -131,8 +132,8 @@ class _LoginPageState extends State<LoginPage>{
     var resposta  = await http.post(
     url,
     body: {
-      'emailoucelular': _emailController.text,
-      'senha': _passwordController.text
+      'email': _emailController.text,
+      'password': _passwordController.text
     },
     );
     if(resposta.statusCode == 200){

@@ -29,7 +29,9 @@ dependencies:
   hexcolor: ^2.0.5
   http: ^0.13.3
   shared_preferences: ^2.0.6
-
+  dio: ^4.0.0
+  fluttertoast: ^8.0.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -47,7 +49,7 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-  - img/
+    - img/1.jpg
   
   uses-material-design: true
 

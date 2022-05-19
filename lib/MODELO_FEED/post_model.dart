@@ -21,7 +21,7 @@ final List<Post> posts = [
   ),
   Post(
     authorName: 'Sam Martin',
-    authorImageUrl: 'assets/images/user0.png',
+    authorImageUrl: 'img/1.jpg',
     timeAgo: '10 min',
     imageUrl: 'img/1.jpg',
   ),
